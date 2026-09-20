@@ -9,9 +9,10 @@
 <meta property="og:site_name" content="Letícia &amp; Gabriel">
 <meta property="og:title" content="Letícia &amp; Gabriel">
 <meta property="og:description" content="o nosso cantinho na internet ♥">
-<meta property="og:image" content="og.jpg">
+<meta property="og:image" content="https://gabrielbraithwaitesantos.github.io/Leticia/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:url" content="https://gabrielbraithwaitesantos.github.io/Leticia/">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%99%A5%3C/text%3E%3C/svg%3E">
@@ -40,6 +41,7 @@
     --sans: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     background: var(--cream);
@@ -123,33 +125,55 @@
 
   /* galeria */
   .galeria-sec { background: var(--blush); }
-  .grid-fotos { columns: 3 250px; column-gap: 18px; }
+  .grid-fotos { columns: 2; column-gap: 10px; }
   .foto {
-    break-inside: avoid; margin: 0 0 18px; padding: 0; border: 0; background: none;
-    width: 100%; display: block; cursor: pointer; border-radius: 14px;
+    break-inside: avoid; margin: 0 0 10px; padding: 0; border: 0; background: none;
+    width: 100%; display: block; cursor: pointer; border-radius: 10px;
     transition: transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s ease;
-    box-shadow: 0 14px 34px rgba(90,34,51,.14);
+    box-shadow: 0 8px 20px rgba(90,34,51,.13);
+    -webkit-tap-highlight-color: transparent;
   }
-  .foto img { width: 100%; display: block; border-radius: 14px; }
-  .foto:hover, .foto:focus-visible { transform: translateY(-5px); box-shadow: 0 22px 46px rgba(90,34,51,.22); }
+  .foto img { width: 100%; display: block; border-radius: 10px; }
+  .foto:active { transform: scale(.975); }
+  @media (hover: hover) {
+    .foto:hover, .foto:focus-visible { transform: translateY(-5px); box-shadow: 0 22px 46px rgba(90,34,51,.22); }
+  }
+  @media (min-width: 620px) {
+    .grid-fotos { columns: 3; column-gap: 18px; }
+    .foto, .foto img { border-radius: 14px; }
+    .foto { margin-bottom: 18px; box-shadow: 0 14px 34px rgba(90,34,51,.14); }
+  }
   .dica { text-align: center; font-family: var(--hand); font-size: 22px; color: var(--mute); margin-top: 30px; }
 
   /* lightbox */
-  #lb { position: fixed; inset: 0; z-index: 50; background: rgba(48,16,27,.92); display: grid; place-items: center; padding: 20px; }
-  #lb figure { margin: 0; max-width: min(900px, 94vw); text-align: center; }
-  #lb img { max-width: 100%; max-height: 74svh; border-radius: 10px; display: block; margin: 0 auto; box-shadow: 0 30px 70px rgba(0,0,0,.45); }
-  #lb figcaption { font-family: var(--hand); font-size: clamp(24px, 4vw, 32px); color: #FFD9E2; margin-top: 20px; }
-  #lb .x, #lb .nav { position: absolute; background: rgba(255,255,255,.1); border: 1px solid rgba(255,233,238,.25); color: #FFE9EE; cursor: pointer; border-radius: 999px; font-size: 20px; line-height: 1; display: grid; place-items: center; }
-  #lb .x { top: max(18px, env(safe-area-inset-top, 0px)); right: 18px; width: 44px; height: 44px; }
-  #lb .nav { top: 50%; transform: translateY(-50%); width: 46px; height: 46px; }
-  #lb .prev { left: 14px; }
-  #lb .next { right: 14px; }
-  #lb .x:hover, #lb .nav:hover { background: rgba(255,255,255,.2); }
+  #lb { position: fixed; inset: 0; z-index: 50; background: rgba(40,13,22,.96); display: flex; flex-direction: column; }
+  #lb figure {
+    margin: 0; flex: 1; min-height: 0; display: flex;
+    align-items: center; justify-content: center;
+    padding: calc(64px + env(safe-area-inset-top, 0px)) 16px 8px;
+  }
+  #lb img { max-width: min(1000px, 100%); max-height: 100%; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+  #lb button { background: rgba(255,255,255,.1); border: 1px solid rgba(255,233,238,.25); color: #FFE9EE; cursor: pointer; border-radius: 999px; line-height: 1; display: grid; place-items: center; -webkit-tap-highlight-color: transparent; }
+  #lb button:active { background: rgba(196,82,107,.75); }
+  #lb .x { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px; width: 44px; height: 44px; font-size: 19px; z-index: 2; }
+  #lb .barra { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 14px 16px calc(18px + env(safe-area-inset-bottom, 0px)); }
+  #lb .nav { width: 52px; height: 52px; font-size: 26px; }
+  #lb .conta { font-size: 13px; letter-spacing: .16em; color: #D49FAF; font-variant-numeric: tabular-nums; min-width: 62px; }
+  @media (hover: hover) {
+    #lb button:hover { background: rgba(255,255,255,.22); }
+  }
+  @media (min-width: 720px) and (min-height: 520px) {
+    #lb figure { padding-top: 40px; }
+    #lb .nav { position: absolute; top: 50%; transform: translateY(-50%); }
+    #lb .prev { left: 18px; }
+    #lb .next { right: 18px; }
+    #lb .barra { padding-bottom: 26px; }
+  }
 
   /* motivos */
   .motivos-sec { background: linear-gradient(var(--cream), var(--blush)); }
   .motivos { max-width: 860px; margin: 0 auto; columns: 2 300px; column-gap: 54px; }
-  .motivos li { break-inside: avoid; list-style: none; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 16.5px; line-height: 1.85; color: #5A3040; }
+  .motivos li { break-inside: avoid; list-style: none; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: 17.5px; line-height: 1.8; color: #5A3040; }
   .motivos { padding: 0; margin-inline: auto; }
   .motivos li:last-child { border-bottom: 0; }
 
@@ -240,7 +264,6 @@
   html, body { -webkit-text-size-adjust: 100%; }
   :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
   img { max-width: 100%; }
-  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
@@ -253,10 +276,10 @@
     <div class="amp"><span></span><em>&amp;</em><span></span></div>
     <h1>Gabriel</h1>
     <figure class="polaroid">
-      <img src="fotos/f8.jpg" alt="Letícia e Gabriel sorrindo juntos no fim de tarde">
+      <img src="fotos/f7.jpg" alt="Letícia beijando o rosto do Gabriel no fim de tarde">
       <figcaption>a gente</figcaption>
     </figure>
-    <p>Fiz este site pra guardar a gente: as fotos, as bobeiras, os planos. Rola pra baixo devagar — tem coisa escondida.</p>
+    <p>Fiz esse site porque eu amo você, meu amor. Quero que, sempre que estiver triste, você abra ele. Rola pra baixo devagar — tem coisa escondida.</p>
     <div class="scroll">role ↓</div>
   </div>
 </section>
@@ -278,10 +301,12 @@
     </button>
     <div class="carta" id="carta" hidden>
       <p class="sal">Minha Letícia,</p>
-      <p>Eu não sou muito de escrever, então fiz um site inteiro — parece que dá menos vergonha assim. Mas a verdade é simples: você virou o melhor pedaço dos meus dias. O bom dia, a piada besta no meio da tarde, o silêncio confortável quando a gente só fica ali.</p>
-      <p>Eu gosto de quem eu sou perto de você. Gosto de te ouvir falar de coisas que você ama, de ver você rindo daquele jeito, de saber que no fim do dia é com você que eu quero dividir o que aconteceu.</p>
-      <p>Guardei aqui as nossas fotos, as nossas músicas, os nossos planos. É pouco perto do que eu sinto, mas é nosso.</p>
-      <p style="margin-bottom:26px">Amanhã eu te pergunto de verdade. Mas acho que você já sabe a minha parte da resposta.</p>
+      <p>Eu decidi te pedir agora porque você é perfeita. Você é tudo pra mim, e me faz sentir que o mundo é vazio sem você.</p>
+      <p>Eu amo as suas risadas, os seus jeitos. Eu penso nos nossos filhos e penso que você seria a melhor mãe do mundo.</p>
+      <p>Você é incrível. Baita de uma mulher: responsável, fiel, guerreira, e muito, muito, muito forte.</p>
+      <p>Os seus olhos são maravilhosos, eu fico apaixonado toda vez. E você fica cada vez mais linda — cada vez que eu te vejo, você fica mais linda.</p>
+      <p>Eu sou louco por você. Caraca, eu não sei nem explicar, é uma paixão forte que não dá pra explicar. Às vezes eu me sinto até doido kkkk mas doido de amor, ao ponto de querer alcançar o mundo com você.</p>
+      <p style="margin-bottom:26px">Você é perfeita em tudo. Meu Deus, como pode ser tão linda. Minha gatinha linda e perfeita.</p>
       <p class="sig">seu, Gabriel ♥</p>
     </div>
   </div>
@@ -294,7 +319,7 @@
       <h2>A gente</h2>
     </div>
     <div class="grid-fotos" id="galeria"></div>
-    <p class="dica">onze fotos, nenhuma séria</p>
+    <p class="dica">e ainda tem muita foto pra tirar</p>
   </div>
 </section>
 
@@ -305,14 +330,13 @@
       <h2>Motivos que eu te amo</h2>
     </div>
     <ul class="motivos">
-      <li>Pelo seu sorriso — o de verdade, aquele que aparece antes de você perceber.</li>
-      <li>Porque você me escuta de um jeito que me faz querer falar.</li>
-      <li>Pela sua teimosia, que eu reclamo mas acho linda.</li>
-      <li>Porque perto de você eu descanso. Não preciso ser nada além de eu.</li>
-      <li>Pelo jeito que você cuida das pessoas que ama — e de mim.</li>
-      <li>Porque você faz o dia mais chato virar um dia bom só por estar junto.</li>
-      <li>Pelos seus abraços, que resolvem mais coisa do que qualquer conversa.</li>
-      <li>Porque quando eu penso em futuro, você já está em todas as cenas.</li>
+      <li>Amo tudo em você.</li>
+      <li>Você é como uma estrela no universo. Só que estrela perde o brilho um dia — e o seu não. O seu só fica mais forte.</li>
+      <li>E seus olhos. Caralho, seus olhos são lindos.</li>
+      <li>Você me faz querer viver mais. Sentir mais.</li>
+      <li>Caraca, você é linda pra caramba. É uma beleza que eu não consigo nem descrever.</li>
+      <li>Seu jeito, seu estilo, me deixam louco. Tão louco que não acho palavra que dê conta.</li>
+      <li>Perfeita. Linda. Maravilhosa.</li>
     </ul>
   </div>
 </section>
@@ -377,7 +401,7 @@
     </div>
     <div class="segredo" id="segredo" hidden>
       <div class="h">♥</div>
-      <p class="frase">Se um dia você duvidar do quanto é amada, volta aqui e lê de novo: eu te escolhi, e escolheria outra vez em qualquer versão dessa vida.</p>
+      <p class="frase">Sempre que estiver se perguntando se eu amo você, volte nesse site e veja tudo novamente. Assim poderá ter certeza que eu te escolhi, e te escolheria sempre, meu amor.</p>
       <p class="assin">— Gabriel</p>
     </div>
   </div>
@@ -389,18 +413,19 @@
 (function () {
   var START = new Date(2026, 8, 20, 0, 0, 0);
 
+  // o alt não aparece na tela: é o que um leitor de tela narra
   var FOTOS = [
-    { src: 'fotos/f4.jpg',  legenda: 'você me fazendo rir no meio da calçada' },
-    { src: 'fotos/f8.jpg',  legenda: 'essa aqui é a minha favorita' },
-    { src: 'fotos/f11.jpg', legenda: 'a parede de plantas e a gente' },
-    { src: 'fotos/f1.jpg',  legenda: 'nossa cara de bobos' },
-    { src: 'fotos/f6.jpg',  legenda: 'beijo roubado no fim de tarde' },
-    { src: 'fotos/f9.jpg',  legenda: 'jantar e palhaçada, nessa ordem' },
-    { src: 'fotos/f7.jpg',  legenda: 'agora foi a sua vez' },
-    { src: 'fotos/f2.jpg',  legenda: 'o clássico: língua pra fora' },
-    { src: 'fotos/f5.jpg',  legenda: 'as luzinhas atrás e você na frente' },
-    { src: 'fotos/f10.jpg', legenda: 'a mesa posta e a gente sem fome' },
-    { src: 'fotos/f3.jpg',  legenda: 'três tentativas, nenhuma séria' }
+    { src: 'fotos/f8.jpg',  alt: 'Letícia e Gabriel sorrindo de rosto colado' },
+    { src: 'fotos/f11.jpg', alt: 'Letícia e Gabriel se beijando diante da parede de plantas' },
+    { src: 'fotos/f1.jpg',  alt: 'Letícia e Gabriel fazendo careta em casa' },
+    { src: 'fotos/f4.jpg',  alt: 'Letícia e Gabriel rindo abraçados na calçada' },
+    { src: 'fotos/f6.jpg',  alt: 'Gabriel beijando o rosto da Letícia' },
+    { src: 'fotos/f9.jpg',  alt: 'Letícia e Gabriel no jantar' },
+    { src: 'fotos/f7.jpg',  alt: 'Letícia beijando o rosto do Gabriel' },
+    { src: 'fotos/f2.jpg',  alt: 'Letícia e Gabriel fazendo careta na selfie' },
+    { src: 'fotos/f5.jpg',  alt: 'Gabriel beijando o rosto da Letícia sob as luzinhas' },
+    { src: 'fotos/f10.jpg', alt: 'Letícia e Gabriel à mesa do restaurante' },
+    { src: 'fotos/f3.jpg',  alt: 'Três selfies seguidas da Letícia e do Gabriel' }
   ];
 
   // contador
@@ -466,10 +491,10 @@
     var btn = document.createElement('button');
     btn.className = 'foto';
     btn.type = 'button';
-    btn.setAttribute('aria-label', 'Ver foto: ' + f.legenda);
+    btn.setAttribute('aria-label', 'Ampliar foto: ' + f.alt);
     var img = document.createElement('img');
     img.src = f.src;
-    img.alt = f.legenda;
+    img.alt = f.alt;
     img.loading = i < 3 ? 'eager' : 'lazy';
     btn.appendChild(img);
     btn.addEventListener('click', function () { abrir(i); });
@@ -497,9 +522,10 @@
   }
 
   function pintar() {
-    lb.querySelector('img').src = FOTOS[atual].src;
-    lb.querySelector('img').alt = FOTOS[atual].legenda;
-    lb.querySelector('figcaption').textContent = FOTOS[atual].legenda;
+    var img = lb.querySelector('img');
+    img.src = FOTOS[atual].src;
+    img.alt = FOTOS[atual].alt;
+    lb.querySelector('.conta').textContent = (atual + 1) + ' / ' + FOTOS.length;
   }
 
   function construirLightbox() {
@@ -511,21 +537,40 @@
     lb.setAttribute('aria-label', 'Foto ampliada');
     lb.innerHTML =
       '<button class="x" type="button" aria-label="Fechar">✕</button>' +
-      '<button class="nav prev" type="button" aria-label="Foto anterior">‹</button>' +
-      '<button class="nav next" type="button" aria-label="Próxima foto">›</button>' +
-      '<figure><img alt=""><figcaption></figcaption></figure>';
+      '<figure><img alt=""></figure>' +
+      '<div class="barra">' +
+        '<button class="nav prev" type="button" aria-label="Foto anterior">‹</button>' +
+        '<span class="conta" aria-live="polite"></span>' +
+        '<button class="nav next" type="button" aria-label="Próxima foto">›</button>' +
+      '</div>';
     document.body.appendChild(lb);
 
     lb.querySelector('.x').addEventListener('click', fechar);
     lb.querySelector('.prev').addEventListener('click', function () { mover(-1); });
     lb.querySelector('.next').addEventListener('click', function () { mover(1); });
-    lb.addEventListener('click', function (e) { if (e.target === lb) fechar(); });
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target.tagName === 'FIGURE') fechar();
+    });
     document.addEventListener('keydown', function (e) {
       if (lb.hidden) return;
       if (e.key === 'Escape') fechar();
       if (e.key === 'ArrowLeft') mover(-1);
       if (e.key === 'ArrowRight') mover(1);
     });
+
+    // arrastar o dedo pra trocar de foto
+    var x0 = null, y0 = null;
+    lb.addEventListener('touchstart', function (e) {
+      x0 = e.changedTouches[0].clientX;
+      y0 = e.changedTouches[0].clientY;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) mover(dx < 0 ? 1 : -1);
+      x0 = y0 = null;
+    }, { passive: true });
   }
 
   // carta
